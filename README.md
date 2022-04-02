@@ -122,3 +122,5 @@ oc new-app \
 ```
 
 If you’re using this demo, please ★Star this repository to show your interest!
+
+Diagram and screenshots, coming soon
