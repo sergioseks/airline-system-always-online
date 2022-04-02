@@ -8,7 +8,7 @@ For the contruction of this project was use microservice architecture and each m
 
 |                Service                |   Language   |                         Description                        |
 |:-------------------------------------:|:------------:|:----------------------------------------------------------:|
-| airline-system-always-online-web-app  | Typescript   | Basic frontend that allows to book flight                  |
+| airline-system-always-online-web-app  | TypeScript   | Basic frontend that allows to book flight                  |
 | airline-system-always-online-booking  | Java Spring  | Booking flights and stores in postgres db                  |
 | airline-system-always-online-checkin  | Java Spring  | Chekin the flights and stores in postgres db               |
 | airline-system-always-online-email    | Python Flask | Sends users a booking confirmation                         |
@@ -121,3 +121,4 @@ oc new-app \
  -e POSTGRESQL_DATABASE=asao-ms-user
 ```
 
+If you’re using this demo, please ★Star this repository to show your interest!
