@@ -28,8 +28,6 @@ class SendEmail(object):
     @inject
     def send_email(self, destination: str):
         self.server.starttls()
-        # self.server.login("sec.cloud.business.solutions@gmail.com", "157c25Dc$")
-        # self.server.sendmail("sec.cloud.business.solutions@gmail.com", destination, self.message)
         self.server.login(self.user_email, self.user_password)
         self.server.sendmail(self.user_email, destination, self.message)
         self.server.quit()

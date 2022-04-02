@@ -14,10 +14,10 @@ spring:
     properties.hibernate.temp.use_jdbc_metadata_defaults: false
  
 amadeus:
- clientid: ${AMADEUS_CLIENT_ID:OnztQYxN61WwJAGZSYOSGLR9j8joydNH}
- clientsecret: ${AMADEUS_CLIENT_SECRET:qohrFS6jgAteQgvE}
+ clientid: ${AMADEUS_CLIENT_ID}
+ clientsecret: ${AMADEUS_CLIENT_SECRET}
  
-userurl: ${USER_URL:http://169.63.40.61/users-dev}
+userurl: ${USER_URL}
   
 server:
   port : 8080
