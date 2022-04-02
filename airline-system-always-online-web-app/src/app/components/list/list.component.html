@@ -1,0 +1,126 @@
+<mat-toolbar *ngIf="!viewError">
+    <span>FLIGHT OFFERS SEARCH</span>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="viewError">
+    <span>AN ERROR HAS OCCURRED. TRY AGAIN LATER</span>
+</mat-toolbar>
+
+<div *ngIf="!viewError">
+    <mat-card>
+        <mat-card-content>
+            <form class="my-form" [formGroup]="searchFlightForm" (ngSubmit)="searchFlight()">
+
+               <mat-form-field class="full-width">
+                  <input matInput placeholder="From" formControlName="from">
+                  <mat-label>From</mat-label>
+               </mat-form-field>
+
+               <mat-form-field class="full-width">
+                  <input matInput placeholder="To" formControlName="to">
+                  <mat-label>To</mat-label>
+               </mat-form-field>
+
+               <mat-form-field color="accent" appearance="fill" style="justify-content: center;">
+                <mat-label>Departure date</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="departureDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              
+              <mat-form-field color="accent" appearance="fill" style="justify-content: center;">
+                <mat-label>Return date</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="returnDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              </mat-form-field>
+              
+
+               <mat-card-actions>
+                    <button type="submit" mat-raised-button color="primary" class="button-center">Submit</button>
+                </mat-card-actions>
+
+            </form>
+         </mat-card-content>
+    </mat-card>
+</div>
+
+<mat-paginator 
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="OnPageChange($event)">
+</mat-paginator>
+
+<div class="basic-container">
+    <mat-grid-list cols="1" rowHeight="5:5" gutterSize="5px" [style.height]="'200px'">
+
+        <mat-grid-tile *ngFor="let flight of pagedList; let i = index">
+
+            <mat-card [style.width]="'100%'" style="padding:0;">
+
+                <div fxLayout="row" style="justify-content: center;">
+                   Price: {{ flight.price }}
+                </div>
+
+                <div *ngIf="flight.CfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    Departure Total duration: {{ flight.CFlightTotalDuration }}
+                </div>
+
+                <div *ngIf="flight.CfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    {{ flight.CfirstFlightDepartureDate }} {{ flight.CfirstFlightDepartureAirport }} --> {{ flight.CfirstFlightArrivalAirport }} {{ flight.CfirstFlightArrivalDate }}
+                </div>
+                
+                <div *ngIf="flight.CfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    <img src={{flight.CfirstFlightAirlineLogo}}
+                     alt={{flight.CfirstFlightAirline}} width="30%">                       
+                </div>
+
+                <div *ngIf="flight.CsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    Connection duration is {{ flight.Cstop_time }}
+                </div>
+
+                <div *ngIf="flight.CsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    {{ flight.CsecondFlightDepartureDate }} {{ flight.CsecondFlightDepartureAirport }} --> {{ flight.CsecondFlightArrivalAirport }} {{ flight.CsecondFlightArrivalDate }}
+                </div>
+                
+                <div *ngIf="flight.CsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    <img src={{flight.CsecondFlightAirlineLogo}}
+                     alt={{flight.CsecondFlightAirline}} width="30%">                       
+                </div>
+
+
+                <div *ngIf="flight.OfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    Return Total duration {{ flight.OFlightTotalDuration }}
+                </div>
+
+                <div *ngIf="flight.OfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    {{ flight.OfirstFlightDepartureDate }} {{ flight.OfirstFlightDepartureAirport }} --> {{ flight.OfirstFlightArrivalAirport }} {{ flight.OfirstFlightArrivalDate }}
+                </div>
+                
+                <div *ngIf="flight.OfirstFlightDepartureDate;" fxLayout="row" style="justify-content: center;">
+                    <img src={{flight.OfirstFlightAirlineLogo}}
+                     alt={{flight.OfirstFlightAirline}} width="30%">                       
+                </div>
+
+                <div *ngIf="flight.OsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    Connection duration is {{ flight.Cstop_time }}
+                </div>
+
+                <div  *ngIf="flight.OsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    {{ flight.OsecondFlightDepartureDate }} {{ flight.OsecondFlightDepartureAirport }} --> {{ flight.OsecondFlightArrivalAirport }} {{ flight.OsecondFlightArrivalDate }}
+                </div>
+                
+                <div *ngIf="flight.OsecondFlightDepartureAirport;" fxLayout="row" style="justify-content: center;">
+                    <img src={{flight.OsecondFlightAirlineLogo}}
+                     alt={{flight.OsecondFlightAirline}} width="30%">                       
+                </div>
+                
+                <div fxLayout="row" style="justify-content: center; padding:10px;">
+                    <button mat-raised-button (click)="openDialog(flight)" btn btn-primary active> Booking</button>
+                </div>
+
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,0 +1,21 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: ${POSTGRESQL_PASSWORD:admin}
+    url: jdbc:postgresql://${POSTGRESQL_SERVICE_HOST:localhost}:${POSTGRESQL_SERVICE_PORT:5432}/${POSTGRESQL_DATABASE:asao-ms-payment}
+    username: ${POSTGRESQL_USER:postgres}
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+ 
+server:
+  port : 8080
+  
+stripe:
+  keys:
+   secret: ${STRIPE_SECRET:sk_test_51GxGMaD0tu2WQFEeZ7oPiUPeo7eUsQ8Z8dWIjJzBy2N9xXj8jJoqiRdEC10MVobgyLmaW2mWwIzhfkUzOubQF7O200mGfCbpNx}

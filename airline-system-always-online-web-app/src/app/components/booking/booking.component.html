@@ -1,0 +1,65 @@
+<mat-toolbar *ngIf="!viewError">
+    <span style="text-align: center;">BOOKING FLIGHTS</span>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="viewError">
+    <span style="text-align: center;">AN ERROR HAS OCCURRED. TRY AGAIN LATER</span>
+</mat-toolbar>
+
+<mat-paginator 
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="OnPageChange($event)">
+</mat-paginator>
+
+<div class="basic-container" *ngIf="!viewError">
+    <mat-grid-list cols="1" rowHeight="7:2" gutterSize="5px" [style.height]="'200px'">
+
+        <mat-grid-tile *ngFor="let booking of pagedList; let i = index">
+
+            <mat-card style="width:300px; margin:5em;padding-top:0;padding-left:50px;padding-right:0; background:rgba(0,0,0,.06);">
+
+                <div fxLayout="row">
+                    <h3 style="text-align: center;">BOOKING DETAILS</h3>
+                </div>
+
+                <div fxLayout="row">
+                    <b>Total price:</b> {{ booking.totalPrice }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Booking date:</b> {{ booking.bookedDate }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Origin location code:</b> {{ booking.originLocationCode }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Destination location code:</b> {{ booking.destinationLocationCode }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Departure date:</b> {{ booking.departureDate }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Return date:</b> {{ booking.returnDate }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Adults number:</b> {{ booking.adults }}
+                </div>
+
+                <div fxLayout="row">
+                   <b>Children number:</b> {{ booking.childs }}
+                </div>
+
+                <div fxLayout="row" style="padding-left:80px;padding-top:10px;">
+                    <button mat-raised-button (click)="openDialog(booking)" btn btn-primary active> Buy</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

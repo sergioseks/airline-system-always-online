@@ -1,0 +1,28 @@
+<mat-toolbar *ngIf="!viewError">
+    <span>PAYMENT FLIGHTS</span>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="viewError">
+    <span>AN ERROR HAS OCCURRED. TRY AGAIN LATER</span>
+</mat-toolbar>
+
+<div *ngIf="!viewError">
+    <mat-card>
+        <mat-card-content>
+            <form class="my-form" novalidate (ngSubmit)="buy()" [formGroup]="stripForm">
+
+               <mat-form-field class="full-width">
+                  <input matInput placeholder="Enter your fullname" formControlName="name">
+                  <mat-label>Name</mat-label>
+               </mat-form-field>
+
+               <div id="card-element" class="field" class="full-width"></div>
+
+               <mat-card-actions>
+                    <button type="submit" mat-raised-button color="primary" class="button-center">Submit</button>
+                </mat-card-actions>
+
+            </form>
+         </mat-card-content>
+    </mat-card>
+</div>

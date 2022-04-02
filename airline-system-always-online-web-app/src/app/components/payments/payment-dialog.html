@@ -1,0 +1,46 @@
+<h1 mat-dialog-title style="text-align: center;">Reservation payment</h1>
+<div mat-dialog-content style="text-align: center;">
+  <p><b>Do you want to pay for this booked flight</b></p>
+</div>
+
+<div mat-dialog-content>
+  Booking's details:
+  <ul>
+    <li>
+      <span>&#10003;</span> <b>Total price:</b> {{ data.booking.totalPrice }}
+    </li>
+
+    <li>
+      <span>&#10003;</span> <b>Booking date:</b> {{ data.booking.bookedDate }}
+    </li>
+
+    <li>
+      <span>&#10003;</span> <b>Origin location code:</b> {{ data.booking.originLocationCode }}
+    </li>
+
+    <li>
+      <span>&#10003;</span>  <b>Destination location code:</b> {{ data.booking.destinationLocationCode }}
+    </li>
+
+    <li>
+      <span>&#10003;</span>  <b>Departure date:</b> {{ data.booking.departureDate }}
+    </li>
+
+    <li>
+      <span>&#10003;</span>  <b>Return date:</b> {{ data.booking.returnDate }}
+    </li>
+
+    <li>
+      <span>&#10003;</span>  <b>Adults number:</b> {{ data.booking.adults }}
+    </li>
+
+    <li>
+      <span>&#10003;</span>  <b>Children number:</b> {{ data.booking.childs }}
+    </li>
+  </ul>
+</div>
+
+<div mat-dialog-actions style="text-align: center;">
+  <button mat-button class="btn btm-success" (click)="onConfirm()" cdkFocusInitial>Yes</button>
+  <button mat-button class="btn btn-danger" (click)="onCancel()">No</button>
+</div>

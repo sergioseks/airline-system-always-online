@@ -1,0 +1,25 @@
+<mat-toolbar *ngIf="!viewError">
+   <span>LOGIN</span>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="!viewError">
+   <span>AN ERROR HAS OCCURRED. TRY AGAIN LATER</span>
+</mat-toolbar>
+
+<mat-card class="my-card" *ngIf="!viewError">
+   <mat-card-content>
+      <form class="my-form" [formGroup]="loginForm" (ngSubmit)="login()">
+         <mat-form-field class="full-width">
+            <input matInput placeholder="Enter your email" formControlName="email">
+            <mat-label>Email</mat-label>
+         </mat-form-field>
+         <mat-form-field class="full-width">
+            <input type="password" matInput placeholder="Enter your password" formControlName="password">
+            <mat-label>Password</mat-label>
+         </mat-form-field>
+         <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary">LOGIN</button>
+         </mat-card-actions>
+      </form>
+   </mat-card-content>
+</mat-card>

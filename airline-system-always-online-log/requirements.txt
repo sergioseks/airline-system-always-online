@@ -1,0 +1,7 @@
+flasgger
+requests
+Flask
+Flask-Cors
+prometheus_flask_exporter
+injector
+pymongo

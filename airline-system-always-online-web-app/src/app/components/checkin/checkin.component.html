@@ -1,0 +1,80 @@
+<mat-toolbar *ngIf="!viewError">
+    <span>CHECK IN</span>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="viewError">
+    <span>AN ERROR HAS OCCURRED. TRY AGAIN LATER</span>
+</mat-toolbar>
+
+<div *ngIf="!viewError">
+    <mat-card>
+        <mat-card-content>
+            <form class="my-form" [formGroup]="checkinForm" (ngSubmit)="sendCheckin()">
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="To" formControlName="to">
+                    <mat-label>To</mat-label>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="dnumber" formControlName="dnumber">
+                    <mat-label>Document nunber</mat-label>
+                </mat-form-field>
+
+                <mat-form-field color="accent" appearance="fill" style="justify-content: center;">
+                    <mat-label>Departure date</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="departureDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-card-actions>
+                    <button type="submit" mat-raised-button color="primary" class="button-center">Submit</button>
+                </mat-card-actions>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<mat-paginator 
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="OnPageChange($event)">
+</mat-paginator>
+
+<div class="basic-container">
+    <mat-grid-list cols="1" rowHeight="7:2" gutterSize="5px" [style.height]="'200px'">
+
+        <mat-grid-tile *ngFor="let checkin of pagedList; let i = index">
+
+            <mat-card style="width:300px; margin:5em;padding-top:0;padding-left:50px;padding-right:0; background:rgba(0,0,0,.06);">
+
+                <div fxLayout="row">
+                    <h3 style="text-align: center;">CHECK IN DETAILS</h3>
+                </div>
+
+                <div fxLayout="row">
+                    <b>Document number:</b> {{ checkin.documentNumber }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Destination location code:</b> {{ checkin.destination }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Departure date:</b> {{ checkin.departureDate }}
+                </div>
+
+                <div fxLayout="row">
+                    <b>Check in date:</b> {{ checkin.checkinDate }}
+                </div>
+
+                <div fxLayout="row" style="padding-left:80px;padding-top:10px;">
+                    <button mat-raised-button (click)="openDialog(checkin)" btn btn-primary active> Cancel</button>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
