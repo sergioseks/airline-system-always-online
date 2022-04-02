@@ -59,7 +59,14 @@ oc new-app --name user-postgresdb \
 # Deploy redis
 https://docs.redis.com/latest/kubernetes/deployment/openshift/openshift-cli/
 
-# Deploy microservices
+# Deploy microservices+
+
+# web app
+oc new-app \
+--name web-app \
+--context-dir airline-system-always-online-web-app https://github.com/sergioseks/airline-system-always-online.git
+
+# booking
 oc new-app \
 --name booking \
 --context-dir airline-system-always-online-booking https://github.com/sergioseks/airline-system-always-online.git \ 
@@ -69,6 +76,7 @@ oc new-app \
 -e POSTGRESQL_SERVICE_PORT=5432 \
 -e POSTGRESQL_DATABASE=asao-ms-booking
 
+# checkin
 oc new-app \
  --name checkin \
  --context-dir airline-system-always-online-checkin https://github.com/sergioseks/airline-system-always-online.git
@@ -78,16 +86,21 @@ oc new-app \
  -e POSTGRESQL_SERVICE_PORT=5432 \
  -e POSTGRESQL_DATABASE=asao-ms-checkin
 
+# email
 oc new-app \
 --name email \
 --context-dir airline-system-always-online-email https://github.com/sergioseks/airline-system-always-online.git
+-e USER_EMAIL=my_email
+-e USER_PASSWORD=my_password
 
+# list
 oc new-app \
 --name list \
 --context-dir airline-system-always-online-list https://github.com/sergioseks/airline-system-always-online.git
 -e REDIS_SERVICE_HOST=redis_service_name
 -e REDIS_SERVICE_PORT=redis_service:port
 
+# payments
 oc new-app \
  --name payments \ 
  --context-dir airline-system-always-online-payments https://github.com/sergioseks/airline-system-always-online.git
@@ -97,6 +110,7 @@ oc new-app \
  -e POSTGRESQL_SERVICE_PORT=5432 \
  -e POSTGRESQL_DATABASE=asao-ms-payments
 
+# user
 oc new-app \
 --name user \ 
 --context-dir airline-system-always-online-user https://github.com/sergioseks/airline-system-always-online.git
